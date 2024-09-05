@@ -1,10 +1,10 @@
 from typing import Any, Dict, List
 
 
-def filter_by_state(data: List[Dict[str, Any]], state: str = "EXECUTED") -> List[Dict[str, Any]]:
+def filter_by_state(list_of_dict: List[Dict[str, Any]], state: str = "EXECUTED") -> List[Dict[str, Any]]:
     """Функция,возвращает новый список словарей, содержащий только те словари,
     у которых ключ 'state' соответствует указанном значению"""
-    return [d for d in data if d.get("state") == state]
+    return [d for d in list_of_dict if d.get("state") == state]
 
 
 def sort_by_date(date_list: list, reverse_list: bool = True) -> list | bool:
