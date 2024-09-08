@@ -3,13 +3,10 @@ import pytest
 from src.masks import get_mask_account, get_mask_card_number
 
 
-@pytest.fixture
-def card() -> str :
-    return "7000 79** **** 6361"
-
-def test_get_mask_card_number(card: str) -> None:
+def test_get_mask_card_nums(card: str) -> None:
     """Функция тестирует правильность маскирования номера карты."""
     assert get_mask_card_number("7000792289606361") == card
+    assert get_mask_card_number("7000792289606361") == "7000 79** **** 6361"
 
 
 @pytest.mark.parametrize(
@@ -22,28 +19,10 @@ def test_get_mask_card_number(card: str) -> None:
         ("5999414228426353", "5999 41** **** 6353"),
     ],
 )
-def test_get_mask_card_number(num, expected) -> None:
+def test_get_mask_card_number(num: str, expected: str) -> None:
     assert get_mask_card_number(num) == expected
 
 
-
-@pytest.fixture
-def acc() -> str :
-    return "**4305"
-
 def test_get_mask_account(acc: str) -> None:
     assert get_mask_account("73654108430135874305") == acc
-
-
-@pytest.mark.parametrize(
-    "acc, res",
-    [
-        ("64686473678894779589", "**9589"),
-        ("35383033474447895560", "**5560"),
-        ("73654108430135874305", "**4305"),
-        ("89909221136652296582", "**6582"),
-        ("59994142284263533658", "**3658"),
-    ],
-)
-def test_get_mask_account(acc, res) -> None:
-    assert get_mask_account(acc) == res
+    assert get_mask_account("70007962522289606361") == "**6361"
