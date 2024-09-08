@@ -17,5 +17,3 @@ def get_new_data(old_data: str) -> str | None:
     в формате 'ДД.ММ.ГГГГ'"""
     data_slize = old_data[0:10].split("-")
     return ".".join(data_slize[::-1])
-
-
