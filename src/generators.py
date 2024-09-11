@@ -26,5 +26,5 @@ def card_number_generator(start: int, stop: int) -> Iterator:
     """Функция генерирует номера карт в заданном диапазоне"""
     for i in range(start, stop + 1):
         number_zero = "0000000000000000"
-        card_number = number_zero[: -len(str(i))] + str(i)  # Генерация номера карты
+        card_number = number_zero[: -len(str(i))] + str(i)
         yield f"{card_number[:4]} {card_number[4:8]} {card_number[8:12]} {card_number[12:]}"
