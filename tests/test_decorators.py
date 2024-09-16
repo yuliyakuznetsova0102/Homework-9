@@ -1,5 +1,3 @@
-from fileinput import filename
-
 import pytest
 
 from src.decorators import log
@@ -20,7 +18,6 @@ def test_log_success(capsys):
 
     captured = capsys.readouterr()
     assert captured.out == "test_function_success ok\n"
-
 
 
 def test_log_error(capsys):
