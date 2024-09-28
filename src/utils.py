@@ -1,5 +1,8 @@
 import json
 from json import JSONDecodeError
+from typing import Any
+
+from src.external_api import currency_conversion
 
 
 def financial_transactions(path: str) -> list:
@@ -15,3 +18,12 @@ def financial_transactions(path: str) -> list:
         return transactions
     except FileNotFoundError:
         return []
+
+
+def transaction_amount(trans: dict, currency: str = "RUB") -> Any:
+    """Функция принимает на вход транзакцию и возвращает сумму транзакции в рублях"""
+    if trans["operationAmount"]["currency"]["code"] == currency:
+        amount = trans["operationAmount"]["amount"]
+    else:
+        amount = currency_conversion(trans)
+    return amount
