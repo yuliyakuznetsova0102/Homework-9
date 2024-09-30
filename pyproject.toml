@@ -10,6 +10,7 @@ packages = [{include = "homework 9"}]
 python = "^3.12"
 python-dotenv = "^1.0.1"
 requests = "^2.32.3"
+pylint = "^3.3.1"
 
 
 [tool.poetry.group.lint.dependencies]

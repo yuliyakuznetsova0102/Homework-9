@@ -16,18 +16,18 @@ utils_logger.setLevel(logging.DEBUG)
 def financial_transactions(path: str) -> list:
     """Функция принимает на вход путь до JSON-файла и возвращает список словарей с данными о финансовых транзакциях."""
     try:
-        utils_logger.info(f"Получение данных из файла {path}")
+        utils_logger.info(f"Получение данных из файла '{path}'")
         with open(path, encoding="utf-8") as financial_file:
             try:
                 transactions = json.load(financial_file)
             except JSONDecodeError:
-                utils_logger.error(f'Ошибка при чтении json-файла из файла "{path}"')
+                utils_logger.error(f"Ошибка при чтении json-файла из файла '{path}'")
                 return []
         if not isinstance(transactions, list):
             return []
         return transactions
     except FileNotFoundError:
-        utils_logger.error(f'Ошибка:файл "{path}" не найден')
+        utils_logger.error(f"Ошибка: файл '{path}' не найден")
         return []
 
 
