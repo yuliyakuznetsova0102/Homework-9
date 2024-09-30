@@ -7,7 +7,7 @@ from src.external_api import currency_conversion
 
 utils_logger = logging.getLogger("utils")
 file_handler = logging.FileHandler("../logs/utils.log", "w", encoding="utf-8")
-file_formatter = logging.Formatter("%(asctime)s %(filename)s %(levelname)s: %(massage)s")
+file_formatter = logging.Formatter("%(asctime)s %(filename)s %(levelname)s: %(message)s")
 file_handler.setFormatter(file_formatter)
 utils_logger.addHandler(file_handler)
 utils_logger.setLevel(logging.DEBUG)
