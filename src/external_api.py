@@ -17,4 +17,4 @@ def currency_conversion(transaction: Any) -> Any:
     payload = {}
     response = requests.get(url, headers={"apikey": values}, data=payload)
     result = response.json()
-    return result["result"]
+    return float(result["result"])
