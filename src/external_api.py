@@ -5,16 +5,19 @@ import requests
 from dotenv import load_dotenv
 
 load_dotenv()
-values = os.getenv("PASSWORD")
+HEADERS = os.getenv("PASSWORD")
 
 
 def currency_conversion(transaction: Any) -> Any:
     """Функция конвертации"""
     amout = transaction["operationAmount"]["amount"]
-    code = transaction["operationAmount"]["currency"]["code"]
-    to = "RUB"
-    url = f"https://api.apilayer.com/exchangerates_data/convert?to={to}&from={code}&amount={amout}"
-    payload = {}
-    response = requests.get(url, headers={"apikey": values}, data=payload)
-    result = response.json()
-    return float(result["result"])
+    currency = transaction["operationAmount"]["currency"]["code"]
+    if currency == "RUB":
+        return float(amout)
+    else:
+        response = requests.get(
+            url=f"https://api.apilayer.com/exchangerates_data/convert?to=RUB&from={currency}&amount={amout}",
+            headers=HEADERS,
+        )
+        result = response.json()
+        return float(result["result"])
