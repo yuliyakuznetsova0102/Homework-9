@@ -1,8 +1,6 @@
-from unittest.mock import Mock, mock_open, patch
+from unittest.mock import mock_open, patch
 
-import pandas as pd
-
-from src.pandas_csv import get_data_from_csv, get_data_from_xlsx
+from src.pandas_csv import get_data_from_csv
 
 
 @patch("csv.reader")
@@ -39,3 +37,9 @@ def test_reader_file_transaction_csv(mock_reader):
         ]
 
         mocked_open.assert_called_with("transaction.csv", "r", encoding="utf-8")
+
+
+@patch("builtins.open", new_callable=mock_open, read_data="data")
+def test_get_info_transactions_xlsx(mock_file):
+    assert open("../data/test_transactions_excel.xlsx").read() == "data"
+    mock_file.assert_called_with("../data/test_transactions_excel.xlsx")
